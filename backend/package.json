@@ -1,0 +1,16 @@
+{
+  "name": "inventory",
+  "version": "1.0.0",
+  "description": "inventory management system directory",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon src/index.js"
+  },
+  "keywords": [
+    "IMS",
+    "inventory",
+    "MERN"
+  ],
+  "author": "Paras Jain and Team",
+  "license": "ISC"
+}
