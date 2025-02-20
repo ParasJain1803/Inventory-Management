@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "inventory management system directory",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "dev": "nodemon src/index.js"
+    "dev": "nodemon -r dotenv/config --experimental-json-modules src/server.js"
   },
   "keywords": [
     "IMS",
@@ -12,5 +13,14 @@
     "MERN"
   ],
   "author": "Paras Jain and Team",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "http-status": "^2.1.0",
+    "mongoose": "^8.10.1",
+    "morgan": "^1.10.0",
+    "nodemon": "^3.1.9"
+  }
 }
