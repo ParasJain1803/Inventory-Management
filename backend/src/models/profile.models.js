@@ -1,18 +1,12 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose from "mongoose";
 
-const profileSchema = new Schema(
+const ProfileSchema = new mongoose.Schema(
   {
-    name: {
-      type: String,
-      required: true,
-    },
-    email: {
-      type: String,
-      required: true,
-      unique: true,
-    },
+    user: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+    email: { type: String, required: true, unique: true }, // Ensure email is required
+    // Add other profile fields if needed
   },
-  { timestamps: true }
+  { timestamps: true } // Include timestamps for created and modified fields
 );
 
-export const Profile = mongoose.model("Profile", profileSchema);
+export const Profile = mongoose.model("Profile", ProfileSchema);
