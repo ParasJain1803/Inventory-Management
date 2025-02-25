@@ -9,4 +9,13 @@ export class AuthValidation {
       .notEmpty()
       .withMessage("Password IS REQUIRED")
   ];
+  static LoginUser = [
+    body("email").isEmail().notEmpty().withMessage("Invalid email"),
+    body("password")
+      .isLength({ min: 6 })
+      .withMessage("Password must be at least 6 characters long")
+      .notEmpty()
+      .withMessage("Password IS REQUIRED")
+  ];
+  
 }

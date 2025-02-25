@@ -12,4 +12,11 @@ router.post(
   AuthController.RegisterUser
 );
 
+router.post(
+  "/login",
+  AuthValidation.LoginUser,
+  Validation,
+  AuthController.LoginUser
+);
+
 export default router;

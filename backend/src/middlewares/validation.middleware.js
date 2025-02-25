@@ -6,7 +6,7 @@ export const Validation = (req, res, next) => {
     const result = validationResult(req);
 
     if (!result.isEmpty()) {
-      throw new ApiError(result.array()[0].msg);
+      throw new ApiError("In validation.middleware.js", result.array()[0].msg);
     }
     next();
   } catch (error) {

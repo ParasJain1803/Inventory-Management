@@ -24,4 +24,22 @@ export class AuthService {
       token: "",
     };
   }
+  static async LoginUser(body) {
+    const { email, password, name } = body;
+    const user = await User.findOne({ email });
+    if (!user) {
+      throw new ApiError(401, "User not registered");
+    }
+
+    // Check if user is actually created
+    if (password !== user.password) {
+      throw new ApiError(403, "Invalid password");
+    }
+
+    return {
+      msg: "User login successfully",
+      token: "",
+    };
+  }
+  
 }
