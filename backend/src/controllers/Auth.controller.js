@@ -7,9 +7,15 @@ export class AuthController {
     const res_obj = await AuthService.RegisterUser(req.body);
     res.status(status.CREATED).send(res_obj);
   });
+
   static LoginUser = asyncHandler(async (req, res) => {    
     const res_obj = await AuthService.LoginUser(req.body);
     res.status(status.OK).send(res_obj);
   });
+
+  static GetProfile = asyncHandler(async (req, res) => {
+    const res_obj = await AuthService.GetProfile(req.user);
+    res.status(status.OK).send(res_obj);
+  })
   
 }
