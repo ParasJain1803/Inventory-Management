@@ -5,12 +5,11 @@ import MainLayout from "./layout/MainLayout.jsx";
 
 function App() {
   return (
-    <> 
+    <>
       <Header />
-    <MainLayout>
-      
-      <Outlet />
-    </MainLayout>
+      <MainLayout>
+        <Outlet />
+      </MainLayout>
     </>
   );
 }
