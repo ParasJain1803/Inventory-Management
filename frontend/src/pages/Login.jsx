@@ -8,6 +8,7 @@ import * as Yup from "yup";
 import { useLoginUserMutation } from "../utils/queries/Auth.query";
 
 const Login = () => {
+  const backendURL = import.meta.env.VITE_PUBLIC_BACKEND_URL;
   const initialValues = {
     name: "",
     email: "",
@@ -25,6 +26,8 @@ const Login = () => {
   const navigate = useNavigate();
 
   const OnSubmitHandler = async (User, { resetForm }) => {
+    console.log(backendURL);
+    
     try {
       const { data, error } = await loginUser(User);
       if (error) {
