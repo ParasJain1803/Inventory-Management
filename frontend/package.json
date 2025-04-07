@@ -13,6 +13,7 @@
     "@reduxjs/toolkit": "^2.6.0",
     "@tailwindcss/vite": "^4.0.9",
     "axios": "^1.8.4",
+    "dotenv": "^16.4.7",
     "formik": "^2.4.6",
     "primereact": "^10.9.2",
     "react": "^19.0.0",
