@@ -35,7 +35,7 @@ const MainLayout = ({ children }) => {
               icon={<SiGoogledocs />}
               component={<Link to="/register" />}
             >
-              Dashboard
+              Register
             </MenuItem>
             <MenuItem
               icon={<FaShoppingCart />}

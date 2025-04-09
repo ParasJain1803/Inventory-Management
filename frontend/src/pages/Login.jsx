@@ -26,8 +26,6 @@ const Login = () => {
   const navigate = useNavigate();
 
   const OnSubmitHandler = async (User, { resetForm }) => {
-    console.log(backendURL);
-    
     try {
       const { data, error } = await loginUser(User);
       if (error) {
