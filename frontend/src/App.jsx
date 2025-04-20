@@ -4,14 +4,13 @@ import Header from "./components/Header.jsx";
 import MainLayout from "./layout/MainLayout.jsx";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { setUser, UserSlice } from "./utils/slice/user.slice.js";
-import Home from "./components/Home.jsx";
+import { setUser, UserSlicePath } from "./utils/slice/user.slice.js";
 
 function App() {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  // const selector = useSelector(UserSlice)
+  const selector = useSelector(UserSlicePath);
 
   const fetchUser = async (token) => {
     try {
@@ -23,31 +22,47 @@ function App() {
           },
         }
       );
+
+      console.log(data.user);
+      console.log(selector.user);
+
       dispatch(setUser(data.user));
       setLoading(false);
       return;
     } catch (error) {
+      console.log("error in fetchUser : App.jsx , ", error);
       navigate("/login");
       return;
     }
   };
 
-  useEffect(() => {
-    const token = localStorage.getItem("token") || "";
-    if (!token) {
-      navigate("/login");
-      return;
-    } else {
-      async () => {
-        await fetchUser(token);
-      };
-    }
-  }, []);
+  // useEffect(() => {
+  //   const token = localStorage.getItem("token") || '';
+  //   console.log(token);
+    
+  //   if (!token) {
+  //     navigate("/login");
+  //     return;
+  //   } else {
+  //     console.dir(UserSlicePath);
+
+  //     console.log(selector);
+
+  //     if (selector?.user) {
+  //       setLoading(false);
+  //       return;
+  //     } else {
+  //       (async () => {
+  //         await fetchUser(token);
+  //       })();
+  //     }
+  //   }
+  // }, []);
 
   return (
     <>
       <Header />
-      <Home />
+      {/* <Sidebar /> */}
       <MainLayout>
         <Outlet />
       </MainLayout>

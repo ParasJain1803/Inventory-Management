@@ -18,4 +18,4 @@ export const UserSlice = createSlice({
 export const { setUser, removeUser } = UserSlice.actions;
 
 // export const UserSlicePath = (state) => state.UserSlice.user;
-export default UserSlice.reducer;
+export const UserSlicePath = (state) => state.UserSlice.user;

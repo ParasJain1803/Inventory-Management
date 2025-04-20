@@ -30,6 +30,8 @@ const Register = () => {
     try {
       
       const response = await registerUser(User);
+      console.log(response);
+      
       
       if (response.error) {
         console.log("Register.jsx || OnSubmitHandler: ", response.error.data?.message || "Unknown error");

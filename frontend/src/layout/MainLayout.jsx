@@ -1,57 +1,61 @@
-import { Sidebar, Menu, MenuItem, SubMenu } from "react-pro-sidebar";
-import {
-  expandSidebar,
-  collapseSidebar,
-} from "../utils/slice/Sidebar.slice.js";
+import { Sidebar, Menu, MenuItem } from "react-pro-sidebar";
 import { useDispatch, useSelector } from "react-redux";
-import { FaHome } from "react-icons/fa";
-import { SiGoogledocs } from "react-icons/si";
-import { FaShoppingCart } from "react-icons/fa";
+import {  SidebarSlicePath, toggleSidebar,} from "../utils/slice/Sidebar.slice.js";
+import { MdOutlineSpaceDashboard } from "react-icons/md";
+import { FiUser } from "react-icons/fi";
+import { IoIosArrowDropright, IoIosArrowDropleft } from "react-icons/io";
+import { FiBox } from "react-icons/fi";
 import { Link } from "react-router-dom";
-
 const MainLayout = ({ children }) => {
-  const isCollapsed = useSelector((state) => state.SideBar.isCollapsed);
+  const selector = useSelector(SidebarSlicePath);
+
   const dispatch = useDispatch();
 
   return (
-    <div className="relative h-screen w-screen overflow-hidden">
-      {/* Sidebar - fixed and floating */}
-      <div
-        onMouseEnter={() => dispatch(expandSidebar())}
-        onMouseLeave={() => dispatch(collapseSidebar())}
-        className="bg-red-900 fixed top-0 left-0 h-screen z-50"
-      >
+    <>
+      <div className="flex items-start">
         <Sidebar
-          collapsed={isCollapsed}
-          width="200px"
-          collapsedWidth="70px"
-          className="p-0 m-0 hidden md:block h-full"
+          collapsed={selector.collapsed}
+          breakPoint="lg"
+          toggled={selector.toggle}
         >
-          <Menu iconShape="circle">
-            <MenuItem icon={<FaHome />} component={<Link to="/" />}>
-              Home
-            </MenuItem>
+          <Menu>
             <MenuItem
-              icon={<SiGoogledocs />}
-              component={<Link to="/register" />}
+              className="lg:hidden"
+              onClick={() => dispatch(toggleSidebar())}
             >
-              Register
+              {selector.toggle ? (
+                <IoIosArrowDropright className="text-2xl" />
+              ) : (
+                <IoIosArrowDropleft className="text-2xl" />
+              )}
             </MenuItem>
+
             <MenuItem
-              icon={<FaShoppingCart />}
-              component={<Link to="/login" />}
+              component={<Link to="/" />}
+              icon={<MdOutlineSpaceDashboard className="text-2xl" />}
             >
-              Cart
+              Dashboard
+            </MenuItem>
+
+            <MenuItem
+              component={<Link to="/orders" />}
+              icon={<FiBox className="text-2xl" />}
+            >
+              Orders
+            </MenuItem>
+
+            <MenuItem
+              component={<Link to="/profile" />}
+              icon={<FiUser className="text-2xl" />}
+            >
+              Profile
             </MenuItem>
           </Menu>
         </Sidebar>
+        <div className="w-full">{children}</div>
       </div>
-
-      {/* Main content centered on full screen */}
-      <div className="flex items-center justify-center h-full w-full">
-        {children}
-      </div>
-    </div>
+    </>
   );
 };
 
